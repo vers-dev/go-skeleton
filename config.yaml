@@ -1,0 +1,11 @@
+Server:
+  port: 8080
+
+Db:
+  host: localhost
+  port: 5430
+  user: postgres
+  password: postgres
+  dbname: testdb
+  sslmode: disable
+  timezone: Europe/Moscow

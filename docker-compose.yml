@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: go_database
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: "testdb"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5430:5432"
+    volumes:
+      - ./docker/postgres/:/docker-entrypoint-initdb.d/
+      - ./docker/postgres/data:/var/lib/postgresql/data
