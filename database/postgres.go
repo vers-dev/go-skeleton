@@ -1,15 +1,15 @@
 package database
 
 import (
+	"context"
 	"fmt"
-	"go-database/config"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/jackc/pgx/v5"
+	"github.com/vers-dev/go-skeleton/config"
 	"sync"
 )
 
 type postgresDatabase struct {
-	Db *gorm.DB
+	Db *pgx.Conn
 }
 
 var (
@@ -30,7 +30,7 @@ func NewPostgresDatabase(conf *config.Config) Database {
 			conf.Db.TimeZone,
 		)
 
-		db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+		db, err := pgx.Connect(context.Background(), dsn)
 
 		if err != nil {
 			panic("Error db connection")
@@ -44,6 +44,6 @@ func NewPostgresDatabase(conf *config.Config) Database {
 	return dbInstance
 }
 
-func (p *postgresDatabase) GetDb() *gorm.DB {
+func (p *postgresDatabase) GetDb() *pgx.Conn {
 	return dbInstance.Db
 }

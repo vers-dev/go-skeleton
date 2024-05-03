@@ -1,13 +1,13 @@
 package app
 
 import (
-	"go-database/config"
-	"go-database/database"
-	"go-database/server"
+	"github.com/vers-dev/go-skeleton/config"
+	"github.com/vers-dev/go-skeleton/database"
+	"github.com/vers-dev/go-skeleton/server"
 )
 
 func Run() {
 	conf := config.GetConfig()
-	db := database.NewPostgresDatabase(conf)
-	server.NewEchoServer(conf, db).Start()
+	database.NewPostgresDatabase(conf)
+	server.StartServer()
 }

@@ -1,6 +1,6 @@
 package main
 
-import "go-database/app"
+import "github.com/vers-dev/go-skeleton/app"
 
 func main() {
 	app.Run()
