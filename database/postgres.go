@@ -39,7 +39,13 @@ func NewPostgresDatabase(conf *config.Config) Database {
 		dbInstance = &postgresDatabase{Db: db}
 	})
 
-	fmt.Println("Database successful connected")
+	err := dbInstance.Db.Ping(context.Background())
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Database successful connected!")
 
 	return dbInstance
 }
